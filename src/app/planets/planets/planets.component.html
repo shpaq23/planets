@@ -1,0 +1,47 @@
+<h1>Star Wars Planet List</h1>
+
+<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+<div class="tab-content">
+  <table *ngIf="!loading" mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let planet"> {{planet.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="rotation_period">
+      <th mat-header-cell *matHeaderCellDef> Rotation Period </th>
+      <td mat-cell *matCellDef="let planet"> {{planet.rotation_period}} </td>
+    </ng-container>
+    <ng-container matColumnDef="orbital_period">
+      <th mat-header-cell *matHeaderCellDef> Orbital Period </th>
+      <td mat-cell *matCellDef="let planet"> {{planet.orbital_period}} </td>
+    </ng-container>
+    <ng-container matColumnDef="diameter">
+      <th mat-header-cell *matHeaderCellDef> Diameter </th>
+      <td mat-cell *matCellDef="let planet"> {{planet.diameter}} </td>
+    </ng-container>
+    <ng-container matColumnDef="climate">
+      <th mat-header-cell *matHeaderCellDef> Climate </th>
+      <td mat-cell *matCellDef="let planet"> {{planet.climate}} </td>
+    </ng-container>
+    <ng-container matColumnDef="gravity">
+      <th mat-header-cell *matHeaderCellDef> Gravity </th>
+      <td mat-cell *matCellDef="let planet"> {{planet.gravity}} </td>
+    </ng-container>
+    <ng-container matColumnDef="terrain">
+      <th mat-header-cell *matHeaderCellDef> Terrain </th>
+      <td mat-cell *matCellDef="let planet"> {{planet.terrain}} </td>
+    </ng-container>
+    <ng-container matColumnDef="surface_water">
+      <th mat-header-cell *matHeaderCellDef> Surface Water </th>
+      <td mat-cell *matCellDef="let planet"> {{planet.surface_water}} </td>
+    </ng-container>
+    <ng-container matColumnDef="population">
+      <th mat-header-cell *matHeaderCellDef> Population </th>
+      <td mat-cell *matCellDef="let planet"> {{planet.population}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+  </table>
+  <mat-paginator [hidden]="loading" [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="10" (page)="pagination($event)"></mat-paginator>
+
+</div>

@@ -1,0 +1,14 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent" [class.invalid]="invalid">
+    <h3>Authorization</h3>
+    <div *ngIf="(submitted && form.invalid)" class="errors">
+      <div class="error" *ngIf="form.get('password').hasError('required')">Password is required.</div>
+      <div class="error" *ngIf="form.get('password').hasError('validatePassword') &&
+       !form.get('password').hasError('required')">Wrong password.</div>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <input type="password" autocomplete="new-password" id="password" class="fadeIn third" name="password" placeholder="password" formControlName="password">
+      <input type="submit" class="fadeIn fourth" value="Log In">
+    </form>
+  </div>
+</div>
