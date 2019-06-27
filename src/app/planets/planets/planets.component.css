@@ -10,8 +10,22 @@
 .mat-table {
   background: none;
 }
-.tab-content, .mat-progress-bar {
+.tab-content, .mat-progress-bar, .input-holder {
   width: 90%;
+}
+
+input[type=text], input[type=password],input[type=email]  {
+  background-color: rgba(47, 49, 54, 0.79);
+  color: aliceblue;
+  padding: 13px 25px;
+  text-align: center;
+  font-size: 16px;
+  border: 2px solid #f6f6f6;
+  float: left;
+  width: 20%;
+  min-width: 200px;
+  margin-bottom: 15px;
+  border-radius: 10px;
 }
 .tab-content {
   max-height: 600px;
@@ -50,7 +64,7 @@
 }
 h1 {
   color: gold;
-  margin: 1em 0;
+  margin-bottom: 1em;
 }
 
 table {

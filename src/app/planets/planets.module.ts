@@ -4,7 +4,14 @@ import { CommonModule } from '@angular/common';
 import { PlanetsRoutingModule } from './planets-routing.module';
 import { PlanetsComponent } from './planets/planets.component';
 import { PlanetComponent } from './planet/planet.component';
-import {MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule, MatTableModule} from '@angular/material';
+import {
+  MatFormFieldModule, MatInputModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatSortModule,
+  MatTableModule
+} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -17,6 +24,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatProgressBarModule,
     MatPaginatorModule,
     BrowserAnimationsModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule,
   ]
 })
 export class PlanetsModule { }

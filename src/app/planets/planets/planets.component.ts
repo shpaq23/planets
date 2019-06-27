@@ -18,8 +18,9 @@ export class PlanetsComponent implements OnInit {
   private loading = true;
 
   // table - pagination
-  private dataSource: MatTableDataSource<Planet>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  private dataSource: MatTableDataSource<Planet>;
+
 
   private columns = ['name', 'rotation_period', 'orbital_period',
     'diameter', 'climate', 'gravity', 'terrain', 'surface_water', 'population'];
@@ -44,6 +45,9 @@ export class PlanetsComponent implements OnInit {
   initTable() {
     this.dataSource = new MatTableDataSource<Planet>(this.planets);
     this.dataSource.paginator = this.paginator;
+    this.dataSource.filterPredicate = (data, filter: string) => {
+      return data.name.toLowerCase().includes(filter); // filtering only by name as required in the task
+    };
   }
   calculatePagesToLoad(pageEvent: PageEvent): number {
     const numberOfPlanets = 61; // all available planets
@@ -57,7 +61,6 @@ export class PlanetsComponent implements OnInit {
     }
     return 0;
   }
-
   pagination(event?: PageEvent) {
     const pages = this.calculatePagesToLoad(event);
     if (pages > 0) {
@@ -77,5 +80,8 @@ export class PlanetsComponent implements OnInit {
           this.loading = false;
         });
     }
+  }
+  filtering(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

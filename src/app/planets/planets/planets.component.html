@@ -1,6 +1,9 @@
 <h1>Star Wars Planet List</h1>
 
 <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+<div class="input-holder" *ngIf="!loading">
+  <input type="text" (keyup)="filtering($event.target.value)" placeholder="Filter">
+</div>
 <div [class.box-shadow]="!loading" class="tab-content scrollbar scrollbar-primary">
   <table *ngIf="!loading" mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="name">
