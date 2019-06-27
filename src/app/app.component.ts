@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router} from '@angular/router';
+import {ActivatedRoute, Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +8,14 @@ import {Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart
 })
 export class AppComponent {
   loading = true;
+  serverError = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private route: ActivatedRoute) {
     router.events.subscribe((routerEvent: Event) => {
       this.checkRouterEvent(routerEvent);
     });
+    route.queryParams.subscribe(value => this.serverError = value.error === '1');
   }
   checkRouterEvent(routerEvent: Event): void {
     if (routerEvent instanceof NavigationStart) {this.loading = true; }

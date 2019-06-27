@@ -1,17 +1,20 @@
 :host {
   display: flex;
-  width: 90%;
+}
+h5 {
+  color: aliceblue;
+  background: rgba(71, 75, 93, 0.95);
+  border-radius: 10px;
+  padding: 7px;
 }
 .mat-table {
   background: none;
 }
-.tab-content, .mat-progress-bar, .input-holder {
-  width: 90%;
-}
 .tab-content {
-  max-height: 600px;
+  max-height: 275px;
   overflow: auto;
   border-radius: 10px;
+  width: 100%;
 }
 .box-shadow {
   box-shadow: 0 0 9px 3px gold;
@@ -39,7 +42,6 @@
 table {
   border-collapse: collapse;
   width: 100%;
-
 }
 table td {
   background-color: rgba(119, 132, 188, 0.8);
@@ -48,9 +50,6 @@ table td, table th {
   border: 1px solid rgba(240, 248, 255, 0.71);
   padding: 8px;
   font-size: 95%;
-}
-table tr:hover {
-  background-color: rgba(164, 177, 238, 0.8);
 }
 table td:first-child {
   background-color: rgba(144, 238, 144, 0.55);

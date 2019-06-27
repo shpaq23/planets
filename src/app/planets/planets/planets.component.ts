@@ -3,7 +3,7 @@ import {Planet} from '../interfaces/planet';
 import {PlanetsService} from '../../api/services/planets.service';
 import {BehaviorSubject, forkJoin, Observable} from 'rxjs';
 import {MatPaginator, MatTableDataSource, PageEvent} from '@angular/material';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-planets',
@@ -34,8 +34,7 @@ export class PlanetsComponent implements OnInit {
 
   ngOnInit() {
     this.planetsService.currentPlanets = new BehaviorSubject<Planet[]>(this.planets);
-    this.planetsService.currentPlanets.asObservable()
-      .subscribe(value1 => { this.planets = value1; });
+    this.planetsService.currentPlanets.asObservable().subscribe(value => { this.planets = value; });
     if (!this.childActivated) {
       this.loading = true;
       this.planetsService.getPlanets(this.page)
@@ -44,15 +43,13 @@ export class PlanetsComponent implements OnInit {
           this.planetsLoaded += value.length;
           this.initTable();
           this.loading = false;
-          console.log(this.planets);
-
         });
     }
   }
 
   populatePlanets(planets: Planet[]) {
     planets.forEach(value => {
-      this.planets[value.id - 2] = value;
+      this.planets[value.id - 1] = value;
     });
     this.planetsService.currentPlanets.next(this.planets);
   }
@@ -94,19 +91,15 @@ export class PlanetsComponent implements OnInit {
           this.loading = false;
         });
     }
-
-    console.log(this.planets);
   }
   filtering(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   details(planet: Planet) {
-    console.log(planet);
     this.router.navigate(['/planets/' + planet.id]);
   }
   deactivateChild() {
     this.initTable();
     this.childActivated = false;
-    console.log(this.planets);
   }
 }

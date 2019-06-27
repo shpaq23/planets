@@ -8,5 +8,6 @@
 <div class="films">
   <h4>Films</h4>
   <mat-progress-bar *ngIf="filmsLoading" mode="indeterminate"></mat-progress-bar>
+  <app-films *ngIf="!filmsLoading" [films]="planet.films"></app-films>
 </div>
 

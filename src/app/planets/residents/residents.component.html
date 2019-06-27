@@ -1,4 +1,4 @@
-<div class="tab-content scrollbar scrollbar-primary box-shadow">
+<div *ngIf="dataSource.data.length !== 0" class="tab-content scrollbar scrollbar-primary box-shadow">
   <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Name </th>
@@ -35,4 +35,7 @@
     <tr mat-header-row *matHeaderRowDef="columns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: columns;"></tr>
   </table>
+</div>
+<div *ngIf="dataSource.data.length === 0">
+  <h5> No information about residents of this planet.</h5>
 </div>

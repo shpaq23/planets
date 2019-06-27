@@ -9,7 +9,7 @@ export class PlanetResolverService implements Resolve<Planet[]> {
   constructor(private planetsService: PlanetsService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Planet[]> | Planet[] {
-    if (this.planetsService.currentPlanets && this.planetsService.currentPlanets.value[route.params.id - 2]) {
+    if (this.planetsService.currentPlanets && this.planetsService.currentPlanets.value[route.params.id - 1]) {
       return this.planetsService.currentPlanets.value;
     } else {
       return this.planetsService.getPlanets(Math.ceil(route.params.id / 10));

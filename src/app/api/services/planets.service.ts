@@ -35,9 +35,12 @@ export class PlanetsService {
         map(data => {
             const results = data.results;
             results.forEach((value, index, array) => {
-              array[index].id = parseInt(array[index].url.replace(/^\D+/g, ''), 10); // planets starts from 2
+              const id = parseInt(array[index].url.replace(/^\D+/g, ''), 10);
+              array[index].id = id - 1; // planets starts from 2
+
               // for uses of application and my structure
-              if (array[index].id === 1) {array[index].id = 61; } else if (array[index].id === 61) {array[index].id = 62; }
+              if (id === 1) {array[index].id = 60; }
+              if (id === 61) {array[index].id = 61; }
               delete array[index].url;
             });
             return results;
