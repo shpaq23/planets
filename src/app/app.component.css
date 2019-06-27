@@ -6,8 +6,17 @@
   text-align: center;
 }
 .content {
-  margin-top: 25px;
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: center;
+  width: 100%;
+  min-height: 100%;
+}
+.mat-progress-bar{
+  width: 90%;
+}
+h1 {
+  color: gold;
+  margin: 0.50em;
 }

@@ -1,8 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Planet} from '../interfaces/planet';
 import {PlanetsService} from '../../api/services/planets.service';
-import {forkJoin, Observable} from 'rxjs';
+import {BehaviorSubject, forkJoin, Observable} from 'rxjs';
 import {MatPaginator, MatTableDataSource, PageEvent} from '@angular/material';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-planets',
@@ -14,33 +15,46 @@ export class PlanetsComponent implements OnInit {
 
   private planets: Planet[] = new Array(61); // 61 planets from backend
   private page = 1;
+  private pageVisited = [false, false, false, false, false, false, false]; // 7 pages total
   private planetsLoaded = 0;
-  private loading = true;
+  private childId: number;
+  private loading: boolean;
+  private childActivated = false;
 
-  // table - pagination
+  // table / pagination
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   private dataSource: MatTableDataSource<Planet>;
 
 
   private columns = ['name', 'rotation_period', 'orbital_period',
-    'diameter', 'climate', 'gravity', 'terrain', 'surface_water', 'population'];
+    'diameter', 'climate', 'gravity', 'terrain', 'surface_water', 'population', 'actions'];
 
-  constructor(private planetsService: PlanetsService) {}
+  constructor(private planetsService: PlanetsService,
+              private router: Router) {}
 
   ngOnInit() {
-    this.planetsService.getPlanets(this.page)
-      .subscribe(value => {
-        this.populatePlanets(value);
-        this.planetsLoaded += value.length;
-        this.initTable();
-        this.loading = false;
-      });
+    this.planetsService.currentPlanets = new BehaviorSubject<Planet[]>(this.planets);
+    this.planetsService.currentPlanets.asObservable()
+      .subscribe(value1 => { this.planets = value1; });
+    if (!this.childActivated) {
+      this.loading = true;
+      this.planetsService.getPlanets(this.page)
+        .subscribe(value => {
+          this.populatePlanets(value);
+          this.planetsLoaded += value.length;
+          this.initTable();
+          this.loading = false;
+          console.log(this.planets);
+
+        });
+    }
   }
 
   populatePlanets(planets: Planet[]) {
     planets.forEach(value => {
       this.planets[value.id - 2] = value;
     });
+    this.planetsService.currentPlanets.next(this.planets);
   }
   initTable() {
     this.dataSource = new MatTableDataSource<Planet>(this.planets);
@@ -80,8 +94,19 @@ export class PlanetsComponent implements OnInit {
           this.loading = false;
         });
     }
+
+    console.log(this.planets);
   }
   filtering(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  details(planet: Planet) {
+    console.log(planet);
+    this.router.navigate(['/planets/' + planet.id]);
+  }
+  deactivateChild() {
+    this.initTable();
+    this.childActivated = false;
+    console.log(this.planets);
   }
 }

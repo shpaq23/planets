@@ -1,34 +1,12 @@
 :host {
   display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  min-height: 100%;
-  padding: 20px;
+  width: 90%;
 }
 .mat-table {
   background: none;
 }
 .tab-content, .mat-progress-bar, .input-holder {
   width: 90%;
-}
-
-input[type=text] {
-  background-color: rgba(47, 49, 54, 0.79);
-  color: aliceblue;
-  padding: 13px 25px;
-  text-align: center;
-  font-size: 16px;
-  border: 2px solid #f6f6f6;
-  float: left;
-  width: 20%;
-  min-width: 200px;
-  margin-bottom: 15px;
-  border-radius: 10px;
-}
-input[type=text]:focus{
-  outline: none;
 }
 .tab-content {
   max-height: 600px;
@@ -58,14 +36,6 @@ input[type=text]:focus{
   margin-top: 10px;
   width: 90%;
 }
-/deep/ .mat-select-value-text, /deep/ .mat-option-text {
-  color: aliceblue !important;
-}
-/deep/ .mat-select-panel {
-  background: rgb(71, 75, 93);
-  color: aliceblue;
-}
-
 table {
   border-collapse: collapse;
   width: 100%;
@@ -83,10 +53,9 @@ table tr:hover {
   background-color: rgba(164, 177, 238, 0.8);
 }
 table td:first-child {
-   background-color: rgba(144, 238, 144, 0.55);
-   font-weight: bold;
+  background-color: rgba(144, 238, 144, 0.55);
+  font-weight: bold;
 }
-
 table th {
   padding-top: 12px;
   padding-bottom: 12px;
@@ -95,5 +64,3 @@ table th {
   font-weight: bold;
   background: rgba(71, 75, 93, 0.95);
 }
-
-

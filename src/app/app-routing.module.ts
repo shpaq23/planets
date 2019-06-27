@@ -5,6 +5,7 @@ import {AuthComponent} from './auth/auth.component';
 import {AuthGuard} from './api/guards/auth.guard';
 import {IsLoggedGuard} from './api/guards/is-logged.guard';
 import {PlanetComponent} from './planets/planet/planet.component';
+import {PlanetResolverService} from './api/resolvers/planet-resolver.service';
 
 const routes: Routes = [
   {
@@ -12,7 +13,7 @@ const routes: Routes = [
     component: PlanetsComponent,
     canActivate: [AuthGuard],
     children: [
-      {path: ':id', component: PlanetComponent}
+      {path: ':id', component: PlanetComponent, resolve: {planets: PlanetResolverService}}
     ]
   },
   {path: 'auth', component: AuthComponent, canActivate: [IsLoggedGuard]},

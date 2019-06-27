@@ -11,7 +11,7 @@ import {PlanetsResponse} from './interfaces/planets-response';
 })
 export class PlanetsService {
 
-  private url = environment.apiUrl;
+  private url = environment.apiUrl + 'planets/';
   private planets: BehaviorSubject<Planet[]>;
 
   constructor(private http: HttpClient) { }

@@ -7,6 +7,7 @@ import { AuthComponent } from './auth/auth.component';
 import {PlanetsModule} from './planets/planets.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {MatProgressBarModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {HttpClientModule} from '@angular/common/http';
     AppRoutingModule,
     PlanetsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

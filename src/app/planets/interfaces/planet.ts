@@ -12,8 +12,8 @@ export interface Planet {
   terrain: string;
   surface_water: number;
   population: number;
-  residents?: Resident[];
-  films?: Film[];
+  residents?: Resident[] | string[];
+  films?: Film[] | string[];
   url?: string;
 
 }

@@ -5,17 +5,20 @@ import { PlanetsRoutingModule } from './planets-routing.module';
 import { PlanetsComponent } from './planets/planets.component';
 import { PlanetComponent } from './planet/planet.component';
 import {
+  MatButtonModule,
   MatFormFieldModule, MatInputModule,
   MatPaginatorModule,
   MatProgressBarModule,
   MatProgressSpinnerModule,
   MatSortModule,
-  MatTableModule
+  MatTableModule, MatTooltipModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ResidentsComponent } from './residents/residents.component';
+import { FilmsComponent } from './films/films.component';
 
 @NgModule({
-  declarations: [PlanetsComponent, PlanetComponent],
+  declarations: [PlanetsComponent, PlanetComponent, ResidentsComponent, FilmsComponent],
   imports: [
     CommonModule,
     PlanetsRoutingModule,
@@ -27,6 +30,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatSortModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTooltipModule,
+    MatButtonModule,
   ]
 })
 export class PlanetsModule { }
