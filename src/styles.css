@@ -10,3 +10,7 @@ body {
 *, ::after, ::before {
   box-sizing: border-box;
 }
+@font-face {
+  font-family: starFont;
+  src: url('/assets/starfont.ttf') format("truetype");
+}

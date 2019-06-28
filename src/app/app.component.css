@@ -19,6 +19,7 @@
 h1 {
   color: gold;
   margin: 0.50em;
+  font-family: starFont, serif;
 }
 h5 {
   color: red;
