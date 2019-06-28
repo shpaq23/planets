@@ -11,6 +11,12 @@
 .mat-raised-button {
   background-color: aliceblue;
 }
+h2 {
+  width: 90%;
+  text-align: left;
+  color: gold;
+  font-family: starFont, serif;
+}
 input[type=text] {
   background-color: rgba(47, 49, 54, 0.79);
   color: aliceblue;

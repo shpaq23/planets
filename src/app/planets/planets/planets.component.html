@@ -1,4 +1,5 @@
-<router-outlet (activate)="childActivated=true" (deactivate)="deactivateChild()"></router-outlet>
+<router-outlet [hidden]="!childActivated" (activate)="childActivated=true" (deactivate)="deactivateChild()"></router-outlet>
+<h2 *ngIf="loading">Loading planets...</h2>
 <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
 <div class="input-holder" *ngIf="!loading && !childActivated">
   <input type="text" (keyup)="filtering($event.target.value)" placeholder="Filter">

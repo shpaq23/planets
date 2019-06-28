@@ -21,6 +21,12 @@ h1 {
   margin: 0.50em;
   font-family: starFont, serif;
 }
+h2 {
+  width: 90%;
+  text-align: left;
+  color: gold;
+  font-family: starFont, serif;
+}
 h5 {
   color: red;
   margin-bottom: 15px;

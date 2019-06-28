@@ -4,6 +4,7 @@
     <h5>External Server Error</h5>
     <button [routerLink]="'/planets'" mat-raised-button>Reload</button>
   </div>
+  <h2 *ngIf="loading">Loading planets...</h2>
   <mat-progress-bar *ngIf="loading && !serverError" mode="indeterminate"></mat-progress-bar>
   <router-outlet *ngIf="!serverError"></router-outlet>
 </div>
