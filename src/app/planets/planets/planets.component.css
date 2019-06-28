@@ -32,7 +32,12 @@ input[type=text]:focus{
   overflow: auto;
   border-radius: 10px;
 }
-
+.mat-table {
+  background: none;
+}
+.tab-content, .mat-progress-bar, .input-holder {
+  width: 90%;
+}
 ::-webkit-scrollbar {
   width: 7px;
   height: 7px;
@@ -46,7 +51,23 @@ input[type=text]:focus{
   background: rgba(71, 75, 93, 0.81);
   border-radius: 20px;
 }
-
+.mat-paginator {
+   border-radius: 10px;
+   color: aliceblue;
+   background: rgba(71, 75, 93, 0.81);
+   margin-top: 10px;
+   width: 90%;
+ }
+/deep/ .mat-select-value-text, /deep/ .mat-option-text {
+   color: aliceblue !important;
+}
+/deep/ .mat-select-panel {
+   background: rgb(71, 75, 93);
+   color: aliceblue;
+}
+.box-shadow {
+   box-shadow: 0 0 9px 3px gold;
+}
 table {
   border-collapse: collapse;
   width: 100%;

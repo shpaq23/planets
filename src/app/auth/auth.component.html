@@ -1,4 +1,4 @@
-<div class="wrapper fadeInDown">
+<div *ngIf="!logged" class="wrapper fadeInDown">
   <div id="formContent" [class.invalid]="invalid">
     <h3>Authorization</h3>
     <div *ngIf="(submitted && form.invalid)" class="errors">

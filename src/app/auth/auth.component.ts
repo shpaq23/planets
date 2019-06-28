@@ -10,10 +10,11 @@ import {AuthService} from '../api/services/auth.service';
 })
 export class AuthComponent implements OnInit {
 
-  form: FormGroup;
-  returnUrl: string;
-  submitted = false;
-  invalid = false;
+  private form: FormGroup;
+  private returnUrl: string;
+  private submitted = false;
+  private invalid = false;
+  private logged = false;
   constructor(private route: ActivatedRoute,
               private router: Router,
               private authService: AuthService) { }
@@ -43,6 +44,7 @@ export class AuthComponent implements OnInit {
       return;
     }
     this.authService.login(this.password);
+    this.logged = true;
     this.router.navigate([this.returnUrl]);
   }
 

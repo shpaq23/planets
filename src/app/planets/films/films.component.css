@@ -7,7 +7,9 @@ h5 {
   border-radius: 10px;
   padding: 7px;
 }
-
+.mat-table {
+  background: none;
+}
 .tab-content {
   max-height: 300px;
   overflow: auto;
