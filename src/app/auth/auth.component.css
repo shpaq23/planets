@@ -23,27 +23,9 @@
   box-shadow: 0 0 9px 3px gold;
 }
 
-#formFooter {
-  background-color: #f6f6f6;
-  border-top: 1px solid #dce8f1;
-  padding: 13px;
-  text-align: center;
-  -webkit-border-radius: 0 0 10px 10px;
-  border-radius: 0 0 10px 10px;
-}
-
 h3 {
   margin: 10px;
   color: #e1f1f8;
-}
-
-h2.inactive {
-  color: #cccccc;
-}
-
-h2.active {
-  color: #0d0d0d;
-  border-bottom: 2px solid #5fbae9;
 }
 
 input[type=button], input[type=submit], input[type=reset]  {
@@ -158,18 +140,6 @@ input.error {
   animation-duration:1s;
 }
 
-.fadeIn.first {
-  -webkit-animation-delay: 0.4s;
-  -moz-animation-delay: 0.4s;
-  animation-delay: 0.4s;
-}
-
-.fadeIn.second {
-  -webkit-animation-delay: 0.6s;
-  -moz-animation-delay: 0.6s;
-  animation-delay: 0.6s;
-}
-
 .fadeIn.third {
   -webkit-animation-delay: 0.8s;
   -moz-animation-delay: 0.8s;
@@ -182,24 +152,6 @@ input.error {
   animation-delay: 1s;
 }
 
-.underlineHover:after {
-  display: block;
-  left: 0;
-  bottom: -10px;
-  width: 0;
-  height: 2px;
-  background-color: #56baed;
-  content: "";
-  transition: width 0.2s;
-}
-
-.underlineHover:hover {
-  color: #0d0d0d;
-}
-
-.underlineHover:hover:after{
-  width: 100%;
-}
 a:hover{
   text-decoration: none;
 }
@@ -207,9 +159,6 @@ a:hover{
   outline: none;
 }
 
-#icon {
-  width:60%;
-}
 .error {
   color: #bd0000;
   font-weight: bold;
@@ -235,10 +184,4 @@ a:hover{
     -webkit-transform: translateX(0);
   }
 }
-input[type=submit].disabled {
-  background-color: #3d749a;
-}
-.alert {
-  width: 90%;
-  max-width: 450px;
-}
+
