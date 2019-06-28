@@ -23,14 +23,9 @@ export class PlanetsService {
   get currentPlanets(): BehaviorSubject<Planet[]> {
     return this.planets;
   }
-  addPlanets(planets: Planet[]) {
 
-  }
-  addPlanet(planet: Planet) {
-    const currentPlanets = this.planets.value;
-  }
   getPlanets(page: number): Observable<Planet[]> {
-    return this.http.get<PlanetsResponse>(this.url +  '?page=' + page + '&format=json')
+    return this.http.get<PlanetsResponse>(environment.localData ? './assets/data.json' : this.url +  '?page=' + page + '&format=json')
       .pipe(
         map(data => {
             const results = data.results;

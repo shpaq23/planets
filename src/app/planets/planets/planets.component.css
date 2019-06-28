@@ -13,7 +13,9 @@
 .tab-content, .mat-progress-bar, .input-holder {
   width: 90%;
 }
-
+.mat-raised-button {
+  background-color: aliceblue;
+}
 input[type=text] {
   background-color: rgba(47, 49, 54, 0.79);
   color: aliceblue;
@@ -95,4 +97,3 @@ table th {
   font-weight: bold;
   background: rgba(71, 75, 93, 0.95);
 }
-

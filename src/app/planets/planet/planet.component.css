@@ -9,12 +9,15 @@
 h2, h4 {
   color: gold;
 }
-.mat-progress-bar, h4{
-  width: 90%;
-}
 h4 {
   text-align: left;
   margin-bottom: 15px;
+}
+.mat-raised-button {
+  background-color: aliceblue;
+}
+.mat-progress-bar, h4{
+  width: 90%;
 }
 .films, .residents {
   width: 90%;

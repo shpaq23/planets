@@ -3,7 +3,7 @@ import {Planet} from '../interfaces/planet';
 import {PlanetsService} from '../../api/services/planets.service';
 import {BehaviorSubject, forkJoin, Observable} from 'rxjs';
 import {MatPaginator, MatTableDataSource, PageEvent} from '@angular/material';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-planets',
@@ -15,9 +15,8 @@ export class PlanetsComponent implements OnInit {
 
   private planets: Planet[] = new Array(61); // 61 planets from backend
   private page = 1;
-  private pageVisited = [false, false, false, false, false, false, false]; // 7 pages total
+  private childPage: number;
   private planetsLoaded = 0;
-  private childId: number;
   private loading: boolean;
   private childActivated = false;
 
@@ -61,35 +60,37 @@ export class PlanetsComponent implements OnInit {
     };
   }
   calculatePagesToLoad(pageEvent: PageEvent): number {
-    const numberOfPlanets = 61; // all available planets
-    if (this.planetsLoaded < numberOfPlanets) {
+   const planetsLoaded = this.planetsService.currentPlanets.value.filter(Boolean).length;
+   if (planetsLoaded < pageEvent.length) {
       const planetsPerRequest = 10; // 10 planets for 1 request from backend
       let planetsRequired = (pageEvent.pageIndex + 1) * pageEvent.pageSize;
-      planetsRequired = planetsRequired > numberOfPlanets ? numberOfPlanets : planetsRequired;
-      if (planetsRequired > this.planetsLoaded) {
-        return Math.ceil((planetsRequired - this.planetsLoaded) / planetsPerRequest);
+      planetsRequired = planetsRequired > pageEvent.length ? pageEvent.length : planetsRequired;
+      if (planetsRequired > planetsLoaded) {
+        return Math.ceil((planetsRequired - planetsLoaded) / planetsPerRequest);
       }
     }
-    return 0;
+   return 0;
   }
   pagination(event?: PageEvent) {
-    const pages = this.calculatePagesToLoad(event);
-    if (pages > 0) {
-      this.loading = true;
-      const requests: Observable<Planet[]>[] = [];
-      for (let i = 0; i < pages; i++) {
-        this.page++;
-        requests.push(this.planetsService.getPlanets(this.page));
-      }
-      forkJoin(requests)
-        .subscribe(value => {
-          value.forEach(planets => {
-            this.populatePlanets(planets);
-            this.planetsLoaded += planets.length;
-          });
-          this.initTable();
-          this.loading = false;
+   const pages = this.calculatePagesToLoad(event);
+   if (pages === 1 && this.page + 1 === this.childPage) { return; }
+   if (pages > 0) {
+    this.loading = true;
+    const requests: Observable<Planet[]>[] = [];
+    for (let i = 0; i < pages; i++) {
+      this.page++;
+      if (this.page === this.childPage) { continue; }
+      requests.push(this.planetsService.getPlanets(this.page));
+    }
+    forkJoin(requests)
+      .subscribe(value => {
+        value.forEach(planets => {
+          this.populatePlanets(planets);
+          this.planetsLoaded += planets.length;
         });
+        this.initTable();
+        this.loading = false;
+      });
     }
   }
   filtering(filterValue: string) {
@@ -99,7 +100,19 @@ export class PlanetsComponent implements OnInit {
     this.router.navigate(['/planets/' + planet.id]);
   }
   deactivateChild() {
-    this.initTable();
-    this.childActivated = false;
+    this.childPage = Math.ceil(this.planets.findIndex(x => x !== undefined) / 10) + 1;
+    if (this.childPage - 1 !== 0) {
+      this.loading = true;
+      this.planetsService.getPlanets(1).subscribe(value => {
+        this.populatePlanets(value);
+        this.planetsLoaded += value.length + (this.childPage === 7 ? 1 : 10) ;
+        this.initTable();
+        this.loading = false;
+        this.childActivated = false;
+      });
+    } else {
+      this.initTable();
+      this.childActivated = false;
+    }
   }
 }

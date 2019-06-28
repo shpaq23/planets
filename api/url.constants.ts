@@ -1,4 +1,4 @@
 export const environment = {
-  production: false,
+  localData: false,
   apiUrl: 'https://swapi.co/api/',
 };

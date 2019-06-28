@@ -2,7 +2,7 @@
   <h1>Star Wars Planets</h1>
   <div class="error" *ngIf="serverError">
     <h5>External Server Error</h5>
-    <button [routerLink]="'/planets'" mat-raised-button>Try Again</button>
+    <button [routerLink]="'/planets'" mat-raised-button>Reload</button>
   </div>
   <mat-progress-bar *ngIf="loading && !serverError" mode="indeterminate"></mat-progress-bar>
   <router-outlet *ngIf="!serverError"></router-outlet>
